@@ -1,0 +1,95 @@
+package com.ict.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.ict.model.service.GuestBookService;
+import com.ict.model.vo.GuestBookVO;
+
+@Controller
+public class GuestBookController {
+	// 일처리(DB)가 있으면 서비스로 가자
+	@Autowired
+	private GuestBookService guestBookService;
+	@Autowired
+	BCryptPasswordEncoder passwordEncoder;
+	
+	@GetMapping("/guestbook_list.do")
+	public ModelAndView getGuestBookList() {
+		ModelAndView mv = new ModelAndView("guestbook/list");
+		List<GuestBookVO> glist = guestBookService.getGuestBookList();
+		mv.addObject("glist", glist);
+		return mv;
+	}
+	
+	@GetMapping("/guestbookAddForm.do")
+	public ModelAndView getGuestBookAddForm() {
+		return new ModelAndView("guestbook/write");
+	}
+	
+	@PostMapping("/guestbook_insert.do")
+	public ModelAndView writeOk(GuestBookVO gvo) {
+		String pwd = passwordEncoder.encode(gvo.getPwd());
+		gvo.setPwd(pwd);
+		/*
+		Stirng rawPassword="1234"; //입력된 비밀번호
+		String encodedPassword = "$2a$10$fZL/N/Xotw.zH2n8A/JbUugjC4SegtDKzh2t.GTAauv5k8WRljApa";//암호화되어 DB에 저장된 패스워드
+		if(passwordEncoder.matches(rawPassword, encodedPassword )){
+		System.out.println("계정정보 일치");
+		}else{
+		System.out.println("계정정보 불일치");
+		}
+		*/
+		ModelAndView mv = new ModelAndView("redirect:/guestbook_list.do");
+		int res = guestBookService.getGuestBookInsert(gvo);
+		return mv;
+	}
+	
+	// idx는 onelist.jsp에도 사용하기 때문에 넘겨야 한다.
+	@GetMapping("/guestbook_oneList.do")
+	public ModelAndView getGuestBookOneList(@ModelAttribute("idx") String idx) {
+		ModelAndView mv = new ModelAndView("guestbook/onelist");
+		GuestBookVO gvo = guestBookService.getGuestBookOneList(idx);
+		mv.addObject("gvo", gvo);
+		return mv;
+	}
+	@PostMapping("/guestbook_delete_Form.do")
+	public ModelAndView getGuestBookDeleteForm(@ModelAttribute("idx") String idx) {
+		ModelAndView mv = new ModelAndView("guestbook/delete");
+		// jsp 실제 삭제할때 비밀번호를 검사하기 위해서 getGuestBookOneList()를 실행하자 
+		GuestBookVO gvo = guestBookService.getGuestBookOneList(idx);
+		mv.addObject("gvo", gvo);
+		return mv;
+	}
+	@PostMapping("/guestbook_delete.do")
+	public ModelAndView getGuestBookDeleteOK(String idx) {
+		ModelAndView mv = new ModelAndView("redirect:/guestbook_list.do");
+		int result = guestBookService.getGuestBookDelete(idx);
+		return mv;
+	}
+	@PostMapping("/guestbook_edit_Form.do")
+	public ModelAndView getGuestBookEditForm(String idx) {
+		ModelAndView mv = new ModelAndView("guestbook/update");
+		GuestBookVO gvo = guestBookService.getGuestBookOneList(idx);
+		mv.addObject("gvo", gvo);
+		return mv;
+	}
+	@PostMapping("/guestbook_edite.do")
+	public ModelAndView getGuestBookEditOK(GuestBookVO gvo) {
+		ModelAndView mv = new ModelAndView("redirect:/guestbook_oneList.do?idx="+gvo.getIdx());
+		int result = guestBookService.getGuestBookUpdate(gvo);
+		return mv;
+	}
+}
+
+
+
+
+
