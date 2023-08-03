@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="guestbook2">
+	<!-- 리스트 -->
+	<select id="list" resultType="g2vo">
+		select * from guestbook2
+	</select>
+	<!-- 글쓰기 -->
+	<insert id="insert" parameterType="g2vo">
+		insert into guestbook2(name,subject, content, email, pwd, f_name, regdate)
+		values(#{name}, #{subject},#{content}, #{email},#{pwd},#{f_name}, sysdate())
+	</insert>
+	<!-- 상세보기 -->
+	
+	<!-- 삭제 -->
+	
+	<!-- 수정 -->
+</mapper>
+
+
+
+
+
+
+
+
+

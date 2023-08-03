@@ -3,7 +3,6 @@ package com.ict.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -18,9 +17,7 @@ public class GuestBookController {
 	// 일처리(DB)가 있으면 서비스로 가자
 	@Autowired
 	private GuestBookService guestBookService;
-	@Autowired
-	BCryptPasswordEncoder passwordEncoder;
-	
+		
 	@GetMapping("/guestbook_list.do")
 	public ModelAndView getGuestBookList() {
 		ModelAndView mv = new ModelAndView("guestbook/list");
@@ -36,17 +33,6 @@ public class GuestBookController {
 	
 	@PostMapping("/guestbook_insert.do")
 	public ModelAndView writeOk(GuestBookVO gvo) {
-		String pwd = passwordEncoder.encode(gvo.getPwd());
-		gvo.setPwd(pwd);
-		/*
-		Stirng rawPassword="1234"; //입력된 비밀번호
-		String encodedPassword = "$2a$10$fZL/N/Xotw.zH2n8A/JbUugjC4SegtDKzh2t.GTAauv5k8WRljApa";//암호화되어 DB에 저장된 패스워드
-		if(passwordEncoder.matches(rawPassword, encodedPassword )){
-		System.out.println("계정정보 일치");
-		}else{
-		System.out.println("계정정보 불일치");
-		}
-		*/
 		ModelAndView mv = new ModelAndView("redirect:/guestbook_list.do");
 		int res = guestBookService.getGuestBookInsert(gvo);
 		return mv;

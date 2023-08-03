@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="icon" type="image/x-icon" href="resources/images/favicon.png">
 <script type="text/javascript">
 	function go_members() {
 		location.href = "/members_list.do";

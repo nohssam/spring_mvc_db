@@ -12,9 +12,11 @@
 	<typeAliases>
 		<typeAlias type="com.ict.model.vo.MembersVO" alias="mvo"/>
 		<typeAlias type="com.ict.model.vo.GuestBookVO" alias="gvo"/>
+		<typeAlias type="com.ict.model.vo.GuestBook2VO" alias="g2vo"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mappers/members-mapper.xml" />
 		<mapper resource="mappers/guestbook-mapper.xml" />
+		<mapper resource="mappers/guestbook2-mapper.xml" />
 	</mappers>
 </configuration>

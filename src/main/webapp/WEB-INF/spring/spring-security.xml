@@ -4,7 +4,8 @@
 	xmlns:security="http://www.springframework.org/schema/security"
 	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-
- <bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />   
- 
+	
+<!-- 네임스페이스에서 security 선택 -->
+	<bean id="passwordEncoder" 
+		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"></bean>
 </beans>
