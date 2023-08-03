@@ -14,11 +14,11 @@
 </style>
 <script type="text/javascript">
 	function edit_go(f) {
-		f.action="/jsp/GuestBook2?cmd=update";
+		f.action="/guestbook2_UpdateForm.do";
 		f.submit();
 	}
 	function delete_go(f){
-		f.action="/jsp/GuestBook2?cmd=delete";
+		f.action="/guestbook2_DeleteForm.do";
 		f.submit();
 	}
 </script>
@@ -27,41 +27,33 @@
 	<div>
 		<h2>방명록 : 상세보기 화면</h2>
 		<hr />
-		<p>[<a href="/jsp/GuestBook2?cmd=list">목록으로 이동</a>]</p>
+		<p>[<a href="/guestbook2_list.do">목록으로 이동</a>]</p>
 		
 		 <!-- 파일 첨부하려면  -->
 		<form method="post">
 			<table>
 				<tr align="center">
 					<td bgcolor="#99ccff">작성자</td>
-					<td>${vo.name }</td>
+					<td>${g2vo.name }</td>
 				</tr>
 				<tr align="center">
 					<td bgcolor="#99ccff">제  목</td>
-					<td>${vo.subject }</td>
+					<td>${g2vo.subject }</td>
 				</tr>
 				<tr align="center">
 					<td bgcolor="#99ccff">email</td>
-					<td>${vo.email }</td>
+					<td>${g2vo.email }</td>
 				</tr>
 				<tr align="center">
 					<td bgcolor="#99ccff">첨부파일</td>
 					<c:choose>
-						<c:when test="${empty vo.f_name }">
+						<c:when test="${empty g2vo.f_name }">
 							<td><b>첨부 파일 없음</b></td>
 						</c:when>
 						<c:otherwise>
-						<%-- 
 							<td>
-								<a href="08_guestbook2/down.jsp?path=upload&f_name=${vo.f_name }">
-									<img src="upload/${vo.f_name}" style="width: 80px;">
-								</a> 	
-							</td>
-							--%>
-							<td>
-							<%-- 다운로드 --%>
-								<a href="/jsp/DownController?path=upload&f_name=${vo.f_name }">
-									<img src="upload/${vo.f_name}" style="width: 80px;">
+								<a href="/guestbook2_down.do?f_name=${g2vo.f_name}">
+									<img src="resources/images/${g2vo.f_name}" style="width: 150px;">
 								</a> 	
 							</td>
 						</c:otherwise>
@@ -69,13 +61,13 @@
 				</tr>
 				<tr align="center">
 					<td colspan="2" style="text-align: left">
-						<pre style="padding-left: 15px">${vo.content }</pre>
+						<pre style="padding-left: 15px">${g2vo.content }</pre>
 					</td>
 				</tr>
 				<tfoot>
 					<tr align="center">
 						<td colspan="2">
-							<input type="hidden" name="idx" value="${vo.idx}">
+							<input type="hidden" name="idx" value="${g2vo.idx}">
 							<input type="button" value="수정" onclick="edit_go(this.form)" />
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							<input type="button" value="삭제" onclick="delete_go(this.form)" />

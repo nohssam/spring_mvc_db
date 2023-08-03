@@ -13,10 +13,16 @@
 		values(#{name}, #{subject},#{content}, #{email},#{pwd},#{f_name}, sysdate())
 	</insert>
 	<!-- 상세보기 -->
-	
+	<select id="onelist" parameterType="String" resultType="g2vo">
+		select * from guestbook2 where idx = #{idx}
+	</select>
 	<!-- 삭제 -->
 	
 	<!-- 수정 -->
+	<update id="update" parameterType="g2vo">
+		update guestbook2 set name=#{name}, subject=#{subject}, email=#{email},
+		content=#{content}, f_name=#{f_name} where idx = #{idx}
+	</update>
 </mapper>
 
 

@@ -38,7 +38,7 @@
 	     			  	<tr>
 	     			  		<td>${vs.count }</td>
 	     			  		<td>${k.name }</td>
-	     			  		<td><a href="">${k.subject }</a></td>
+	     			  		<td><a href="/guestbook2_onelist.do?idx=${k.idx}">${k.subject }</a></td>
 	     			  		<td>${k.regdate.substring(0,10)}</td>
 	     			  	</tr>
 	     			  </c:forEach> 

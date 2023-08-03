@@ -22,8 +22,13 @@ public class GuestBook2DAO {
 		return sqlSessionTemplate.insert("guestbook2.insert", g2vo);
 	}
 	// 상세보기 
-	
+	public GuestBook2VO getGuestBook2OneList(String idx) {
+		return sqlSessionTemplate.selectOne("guestbook2.onelist", idx);
+	}
 	// 삭제
 	
 	// 수정
+	public int getGuestBook2Update(GuestBook2VO g2vo) {
+		return sqlSessionTemplate.update("guestbook2.update", g2vo);
+	}
 }

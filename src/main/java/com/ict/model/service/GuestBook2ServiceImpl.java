@@ -25,8 +25,7 @@ public class GuestBook2ServiceImpl implements GuestBook2Service{
 
 	@Override
 	public GuestBook2VO getGuestBook2OneList(String idx) {
-		// TODO Auto-generated method stub
-		return null;
+		return guestBook2DAO.getGuestBook2OneList(idx);
 	}
 
 	@Override
@@ -37,8 +36,7 @@ public class GuestBook2ServiceImpl implements GuestBook2Service{
 
 	@Override
 	public int getGuestBook2Update(GuestBook2VO g2vo) {
-		// TODO Auto-generated method stub
-		return 0;
+		return guestBook2DAO.getGuestBook2Update(g2vo);
 	}
 
 }
