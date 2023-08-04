@@ -13,10 +13,12 @@
 		<typeAlias type="com.ict.model.vo.MembersVO" alias="mvo"/>
 		<typeAlias type="com.ict.model.vo.GuestBookVO" alias="gvo"/>
 		<typeAlias type="com.ict.model.vo.GuestBook2VO" alias="g2vo"/>
+		<typeAlias type="com.ict.member.model.vo.MemberVO" alias="m2vo"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mappers/members-mapper.xml" />
 		<mapper resource="mappers/guestbook-mapper.xml" />
 		<mapper resource="mappers/guestbook2-mapper.xml" />
+		<mapper resource="mappers/member-mapper.xml" />
 	</mappers>
 </configuration>
