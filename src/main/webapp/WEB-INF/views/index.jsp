@@ -32,12 +32,19 @@
 	function reg_add_go() {
 		location.href = "/member_reg.do";
 	}
+	function member_logout() {
+		location.href = "/member_logout.do";
+	}
+	function go_bbs() {
+		location.href = "/bbs_list.do";
+	}
 </script>
 </head>
 <body>
 	<button onclick="go_members()">Members</button>
 	<button onclick="go_guestbook()">GuestBook</button>
 	<button onclick="go_guestbook2()">GuestBook2</button>
+	<button onclick="go_bbs()">BBS</button>
 	<hr>
 	<div id="login" style="margin: 30px;">
 		<form action="/member_login.do" method="post">
@@ -47,7 +54,8 @@
 		</form>
 	</div>
 	<div id="lgin_ok" style="display: none;">
-		<h2> ${m2vo.m_id }님 로그인 성공</h2>
+		<h2> ${mvo.m_id }님 로그인 성공</h2>
+		<button onclick="member_logout()">로그아웃</button>
 	</div>
 	<div id="btns" style="margin: 30px;">
 	<button onclick="reg_add_go()">회원가입</button>

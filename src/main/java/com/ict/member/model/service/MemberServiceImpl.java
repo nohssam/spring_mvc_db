@@ -19,7 +19,7 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public String getMemberPwd(String m_id) {
+	public MemberVO getMemberPwd(String m_id) {
 		return memberDAO.getMemberPwd(m_id);
 	}
 	

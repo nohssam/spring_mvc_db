@@ -8,7 +8,7 @@ public interface MemberService {
 	
 	// 로그인 
 	// 1. id로 패스워드 맞는지 검사 
-	String getMemberPwd(String m_id);
+	MemberVO getMemberPwd(String m_id);
 	
 	// 아이디 찾기
 	

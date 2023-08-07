@@ -5,7 +5,11 @@
 <mapper namespace="guestbook2">
 	<!-- 리스트 -->
 	<select id="list" resultType="g2vo">
-		select * from guestbook2
+		select * from guestbook2 order by idx 
+	</select>
+
+	<select id="list2" parameterType="Map" resultType="g2vo">
+	 select * from guestbook2 order by idx desc limit #{limit} offset #{offset}
 	</select>
 	<!-- 글쓰기 -->
 	<insert id="insert" parameterType="g2vo">

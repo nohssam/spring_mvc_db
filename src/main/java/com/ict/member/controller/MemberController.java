@@ -38,14 +38,23 @@ public class MemberController {
 		
 		// 입력한 id의 패스워드를 DB에 가져와서 입력한 pwd와 비교해서 맞으면 성공 틀리면 실패
 		// id로 DB에 저장된 pwd 가져오기 
-		String pwd = memberService.getMemberPwd(m2vo.getM_id());
-		if(! passwordEncoder.matches(m2vo.getM_pw(), pwd)) {
+		MemberVO mvo = memberService.getMemberPwd(m2vo.getM_id());
+		if(! passwordEncoder.matches(m2vo.getM_pw(), mvo.getM_pw())) {
 			session.setAttribute("loginChk", "fail");
 			return mv;
 		}else {
+			session.setAttribute("mvo", mvo);
 			session.setAttribute("loginChk", "ok");
 			return mv;
 		}
+	}
+	@GetMapping("/member_logout.do")
+	public ModelAndView getLogout(HttpSession session) {
+		// 세션 초기화
+		// session.invalidate();
+		session.removeAttribute("mvo");
+		session.removeAttribute("loginChk");
+		return new ModelAndView("redirect:/");
 	}
 }
 

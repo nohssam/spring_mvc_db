@@ -15,8 +15,8 @@
 		 </if>
 		  SYSDATE())
 	</insert>
-	<select id="selectPwd" parameterType="String" resultType="String">
-		select m_pw from members where m_id = #{m_id}
+	<select id="selectPwd" parameterType="String" resultType="m2vo">
+		select * from members where m_id = #{m_id}
 	</select>
 </mapper>
 
