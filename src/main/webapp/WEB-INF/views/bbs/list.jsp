@@ -103,8 +103,8 @@ table tfoot ol.paging li a:hover {
 					<c:otherwise>
 						<c:forEach var="k" items="${bbs_list}" varStatus="vs">
 							<tr>
-								<td>${vs.count}</td>
-								<td><a href="">${k.subject}</a></td>
+								<td>${paging.totalRecord - ((paging.nowPage-1)*paging.numPerPage + vs.index)}</td>
+								<td><a href="/bbs_onelist.do?b_idx=${k.b_idx}&cPage=${paging.nowPage}">${k.subject}</a></td>
 								<td>${k.writer }</td>
 								<td>${k.write_date.substring(0,10)}</td>
 								<td>${k.hit}</td>
@@ -113,14 +113,47 @@ table tfoot ol.paging li a:hover {
 					</c:otherwise>
 				</c:choose>
 			</tbody>
-			<!-- 페이지기법 -->
 			<tfoot>
 				<tr>
-					<td colspan="5">
-						<button onclick="write_go()">글쓰기</button>
+					<td colspan="4">
+						<ol class="paging">
+							<!-- 이전 버튼 -->
+							<c:choose>
+								<c:when test="${paging.beginBlock <= paging.pagePerBlock }">
+									<li class="disable">이전으로</li>
+								</c:when>
+								<c:otherwise>
+									<li><a href="/bbs_list.do?cPage=${paging.beginBlock-paging.pagePerBlock }">이전으로</a></li>
+								</c:otherwise>
+							</c:choose>
+							
+							<!-- 페이지번호들 -->
+							<c:forEach begin="${paging.beginBlock }" end="${paging.endBlock }" step="1" var="k">
+								<!--  현재 페이지는 링크 X, 나머지 페이지는 해당 페이지로 이동하게 링크 처리 -->
+								<c:if test="${ k == paging.nowPage}">
+									<li class="now">${k}</li>
+								</c:if>
+								<c:if test="${ k != paging.nowPage}">
+									<li><a href="/bbs_list.do?cPage=${k}">${k}</a></li>
+								</c:if>   		
+							</c:forEach>
+							
+							<!-- 이후 버튼 -->
+							<c:choose>
+								<c:when test="${paging.endBlock >= paging.totalPage }">
+									<li class="disable">다음으로</li>
+								</c:when>
+								<c:otherwise>
+									<li><a href="/bbs_list.do?cPage=${paging.beginBlock+paging.pagePerBlock }">다음으로</a></li>
+								</c:otherwise>
+							</c:choose>
+						</ol>
+					</td>
+					<td>
+						<input type="button" value="글쓰기" onclick=" write_go()">
 					</td>
 				</tr>
-			</tfoot>
+			</tfoot>	
 		</table>
 	</div>
 </body>

@@ -3,12 +3,31 @@
  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="bbs">
-	<select id="list" resultType="bvo">
-		select * from bbs_t order by b_idx desc
+	<select id="count" resultType="int">
+		select count(*) from bbs_t
 	</select>
+	
+	<select id="list" parameterType="Map" resultType="bvo">
+		select * from bbs_t order by b_idx desc limit #{limit} offset #{offset}
+	</select>
+	
 	<insert id="insert" parameterType="bvo">
 		insert into bbs_t(subject, writer, content,f_name, pwd, write_date, hit)
 		values(#{subject},#{writer}, #{content}, #{f_name}, #{pwd},sysdate(), 0)
+	</insert>
+	
+	<update id="hitup" parameterType="String">
+		update bbs_t set hit = hit +1 where b_idx = #{b_idx}
+	</update>
+	<select id="onelist" parameterType="String" resultType="bvo">
+		select * from bbs_t where b_idx = #{b_idx}
+	</select>
+	<select id="comlist" parameterType="String" resultType="cvo">
+		select * from comment_t where b_idx = #{b_idx}
+	</select>
+	<insert id="cominsert" parameterType="cvo">
+		insert into comment_t(writer, content, write_date, b_idx)
+		values(#{writer}, #{content}, sysdate(), #{b_idx})
 	</insert>
 </mapper>
 

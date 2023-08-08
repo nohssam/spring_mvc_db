@@ -52,15 +52,15 @@
 </style>
 <script type="text/javascript">
 	function list_go(f) {
-		f.action="/MyController?cmd=list";
+		f.action="/bbs_list.do";
 		f.submit();
 	}
 	function update_go(f) {
-		f.action = "/MyController?cmd=update";
+		f.action = "";
 		f.submit();
 	}
 	function delete_go(f) {
-		f.action = "/MyController?cmd=delete";
+		f.action = "";
 		f.submit();
 	}
 	
@@ -76,11 +76,12 @@
 			f.content.focus();
 			return;
 		}
-		f.action = "/MyController?cmd=c_write";
+		f.action = "/com_insert.do";
 		f.submit();
 	}
+	
 	function comment_del(f) {
-		f.action = "/MyController?cmd=c_delete";
+		f.action = "";
 		f.submit();
 	}
 </script>

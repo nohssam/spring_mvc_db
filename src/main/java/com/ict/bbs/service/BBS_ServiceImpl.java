@@ -7,11 +7,22 @@ import org.springframework.stereotype.Service;
 
 import com.ict.bbs.model.dao.BBS_DAO;
 import com.ict.bbs.model.vo.BBS_VO;
+import com.ict.bbs.model.vo.Comment_VO;
 
 @Service
 public class BBS_ServiceImpl implements BBS_Service{
 	@Autowired
 	private BBS_DAO bBS_DAO ;
+	
+	@Override
+	public int getTotalCount() {
+		return bBS_DAO.getTotalCount();
+	}
+	
+	@Override
+	public List<BBS_VO> getList(int offset, int limit) {
+		return bBS_DAO.getList(offset, limit);
+	}
 	
 	@Override
 	public List<BBS_VO> getList() {
@@ -23,15 +34,41 @@ public class BBS_ServiceImpl implements BBS_Service{
 	}
 
 	@Override
+	public int getHitUpdate(String b_idx) {
+		return bBS_DAO.getHitUpdate(b_idx);
+	}
+	
+	@Override
 	public BBS_VO getOneList(String b_idx) {
-		return null;
+		return bBS_DAO.getOneList(b_idx);
 	}
 
 	@Override
-	public int getHitUpdate(String b_idx) {
-		// TODO Auto-generated method stub
-		return 0;
+	public List<Comment_VO> getCommList(String b_idx) {
+		return bBS_DAO.getCommList(b_idx);
 	}
 
-	
+	@Override
+	public int getCommInsert(Comment_VO cvo) {
+		return bBS_DAO.getCommInsert(cvo);
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
