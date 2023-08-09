@@ -46,6 +46,15 @@ public class BBS_DAO {
 	public int getCommInsert(Comment_VO cvo) {
 		return sqlSessionTemplate.insert("bbs.cominsert", cvo);
 	}
+	public int getCommDelete(String c_idx) {
+		return sqlSessionTemplate.delete("bbs.comdelete",c_idx);
+	}
+	public int getDelete(String b_idx) {
+		return sqlSessionTemplate.update("bbs.delete",b_idx);
+	}
+	public int getUpdate(BBS_VO bvo) {
+		return sqlSessionTemplate.update("bbs.update", bvo);
+	}
 }
 
 

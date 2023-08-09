@@ -52,6 +52,21 @@ public class BBS_ServiceImpl implements BBS_Service{
 	public int getCommInsert(Comment_VO cvo) {
 		return bBS_DAO.getCommInsert(cvo);
 	}
+	
+	@Override
+	public int getCommDelete(String c_idx) {
+		return bBS_DAO.getCommDelete(c_idx);
+	}
+	
+	@Override
+	public int getDelete(String b_idx) {
+		return bBS_DAO.getDelete(b_idx);
+	}
+	
+	@Override
+	public int getUpdate(BBS_VO bvo) {
+		return bBS_DAO.getUpdate(bvo);
+	}
 }
 
 

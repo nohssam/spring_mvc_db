@@ -42,26 +42,28 @@
 	.title{background:lightsteelblue}
 	.odd {background:silver}
 </style>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		var pwchk = "${pwchk}"
+	    if(pwchk == "fail"){
+		   alert("비밀번호 틀림");
+		   return;
+	   }
+	});
+</script>
 <script type="text/javascript">
 	function delete_ok(f) {
-		var pwd = "${bvo.pwd}";
-		if(f.pwd.value == pwd){
-			var chk = confirm("정말 삭제할까요?");
-			if(chk){
-				f.action="/MyController?cmd=delete_ok";
-				f.submit();
-			}else{
-				history.go(-1);
-			}
-		}else{
-			alert("비밀번호가 틀립니다.");
-			f.pwd.value="";
+		if(f.pwd.value.trim().length <=0){
+			alert("비번을 입력해주세요");
 			f.pwd.focus();
 			return;
 		}
+		f.action="/bbs_delete.do";
+		f.submit();
 	}
 	function list_go(f) {
-		f.action="/MyController?cmd=list";
+		f.action="/bbs_list.do";
 		f.submit();
 	}
 </script>
@@ -78,7 +80,7 @@
 				</tr>
 				<tr>
 					<td colspan="2">
-						<input type="hidden" name="b_idx" value="${bvo.b_idx}">
+						<input type="hidden" name="b_idx" value="${b_idx}">
 						<input type="hidden" name="cPage" value="${cPage}">
 						<input type="button" value="삭제" onclick="delete_ok(this.form)"/>
 						<input type="button" value="목록" onclick="list_go(this.form)"/>

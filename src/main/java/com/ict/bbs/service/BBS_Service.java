@@ -24,4 +24,23 @@ public interface BBS_Service {
 	public List<Comment_VO> getCommList(String b_idx);
 	// 코멘트 삽입하기
 	public int getCommInsert(Comment_VO cvo);
+	// 코멘트 삭제
+	public  int getCommDelete(String c_idx);
+	// 원글 삭제 
+	public int getDelete(String b_idx);
+	// 원글 수정
+	public int getUpdate(BBS_VO bvo);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -29,6 +29,17 @@
 		insert into comment_t(writer, content, write_date, b_idx)
 		values(#{writer}, #{content}, sysdate(), #{b_idx})
 	</insert>
+	<delete id="comdelete" parameterType="String">
+		delete from comment_t where c_idx = #{c_idx}
+	</delete>
+	<update id="delete" parameterType="String">
+		update bbs_t set status = 1 where b_idx = #{b_idx}
+	</update>
+	<update id="update" parameterType="bvo">
+		update bbs_t set subject = #{subject}, content=#{content}, 
+		writer= #{writer},	f_name = #{f_name} where b_idx = #{b_idx}
+	</update>
+	
 </mapper>
 
 

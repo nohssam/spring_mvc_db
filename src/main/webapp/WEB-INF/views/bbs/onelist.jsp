@@ -56,11 +56,11 @@
 		f.submit();
 	}
 	function update_go(f) {
-		f.action = "";
+		f.action = "/bbs_updateForm.do";
 		f.submit();
 	}
 	function delete_go(f) {
-		f.action = "";
+		f.action = "/bbs_deleteForm.do";
 		f.submit();
 	}
 	
@@ -81,7 +81,7 @@
 	}
 	
 	function comment_del(f) {
-		f.action = "";
+		f.action = "/com_delete.do";
 		f.submit();
 	}
 </script>
@@ -111,7 +111,7 @@
 							<td><b>첨부 파일 없음</b></td>
 						</c:when>
 						<c:otherwise>
-							<td><a href="/DownController?path=upload&f_name=${bvo.f_name}" target="_blank"><img  src="upload/${bvo.f_name}" style="80px"></a></td>
+							<td><a href="/down.do?f_name=${bvo.f_name}"><img  src="resources/images/${bvo.f_name}" style="80px"></a></td>
 						</c:otherwise>
 					</c:choose>
 				</tr>
