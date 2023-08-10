@@ -1,4 +1,4 @@
-package com.ict.bbs.service;
+package com.ict.bbs.model.service;
 
 import java.util.List;
 

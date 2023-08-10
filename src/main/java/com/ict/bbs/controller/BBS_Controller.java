@@ -2,7 +2,6 @@ package com.ict.bbs.controller;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.net.URLEncoder;
 import java.util.List;
@@ -22,11 +21,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ict.bbs.model.service.BBS_Service;
 import com.ict.bbs.model.vo.BBS_VO;
 import com.ict.bbs.model.vo.Comment_VO;
-import com.ict.bbs.service.BBS_Service;
 import com.ict.common.Paging;
-import com.ict.model.vo.GuestBook2VO;
 
 @Controller
 public class BBS_Controller {
