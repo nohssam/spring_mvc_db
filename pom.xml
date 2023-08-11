@@ -154,6 +154,12 @@
 			<artifactId>commons-fileupload</artifactId>
 			<version>1.5</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/commons-dbcp/commons-dbcp -->
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>1.4</version>
+		</dependency>
 		<!-- https://mvnrepository.com/artifact/servlets.com/cos -->
 		<dependency>
 			<groupId>servlets.com</groupId>
@@ -180,7 +186,7 @@
 			<artifactId>spring-security-config</artifactId>
 			<version>5.3.13.RELEASE</version>
 		</dependency>
-	
+
 
 	</dependencies>
 	<build>
