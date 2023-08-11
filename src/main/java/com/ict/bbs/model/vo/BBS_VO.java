@@ -5,6 +5,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class BBS_VO {
 	private String b_idx, subject, writer, content,f_name, pwd, write_date, hit, status, old_f_name;
 	private MultipartFile file;
+	
 	public String getB_idx() {
 		return b_idx;
 	}

@@ -7,7 +7,7 @@ public class Paging {
 	private int nowBlock = 1 ;
 
 	// mariadb sql - limit  해당
-	private int numPerPage = 3;
+	private int numPerPage = 10;
 	private int pagePerBlock = 3 ;
 	
 	private int totalRecord = 0 ;

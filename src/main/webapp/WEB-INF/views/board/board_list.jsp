@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 <style type="text/css">
 #bbs table {
-	width:580px;
+	width:800px;
 	margin:0 auto;
 	margin-top:20px;
 	border: 1px solid black;
@@ -76,7 +76,7 @@ table tfoot ol.paging li a:hover {
 </style>
 <script type="text/javascript">
 	function write_go() {
-		location.href = "/bbs_insertForm.do";
+		location.href = "/board_insertForm.do";
 	}
 </script>
 </head>
@@ -95,25 +95,32 @@ table tfoot ol.paging li a:hover {
 			</thead>
 			<tbody>
 				<c:choose>
-					<c:when test="${empty bbs_list}">
+					<c:when test="${empty board_list}">
 						<tr>
 							<td colspan="5"><h2>자료가 존재하지 않습니다.</h2></td>
 						</tr>
 					</c:when>
 					<c:otherwise>
-						<c:forEach var="k" items="${bbs_list}" varStatus="vs">
+						<c:forEach var="k" items="${board_list}" varStatus="vs">
 							<tr>
 								<td>${paging.totalRecord - ((paging.nowPage-1)*paging.numPerPage + vs.index)}</td>
-								<c:choose>
+								<%-- <c:choose>
 									<c:when test="${k.status == 1 }">
 									 <td style="color: gray"> 삭제된 게시물 입니다.</td>
 									</c:when>
 									<c:otherwise>
-										<td><a href="/bbs_onelist.do?b_idx=${k.b_idx}&cPage=${paging.nowPage}">${k.subject}</a></td>
+										<td><a href="/board_onelist.do?idx=${k.idx}&cPage=${paging.nowPage}">${k.subject}</a></td>
 									</c:otherwise>
-								</c:choose>
+								</c:choose> --%>
+								<td style="text-align: left; padding-left: 20px">
+								   <!-- step 만큼 들여쓰기 하자 -->
+									<c:forEach begin="1" end="${k.step }">
+										&nbsp;[Re]
+									</c:forEach>
+									<a href="/board_onelist.do?idx=${k.idx}&cPage=${paging.nowPage}">${k.title}</a>
+								</td>
 								<td>${k.writer }</td>
-								<td>${k.write_date.substring(0,10)}</td>
+								<td>${k.regdate.substring(0,10)}</td>
 								<td>${k.hit}</td>
 							</tr>
 						</c:forEach>
@@ -130,7 +137,7 @@ table tfoot ol.paging li a:hover {
 									<li class="disable">이전으로</li>
 								</c:when>
 								<c:otherwise>
-									<li><a href="/bbs_list.do?cPage=${paging.beginBlock-paging.pagePerBlock }">이전으로</a></li>
+									<li><a href="/board_list.do?cPage=${paging.beginBlock-paging.pagePerBlock }">이전으로</a></li>
 								</c:otherwise>
 							</c:choose>
 							
@@ -141,7 +148,7 @@ table tfoot ol.paging li a:hover {
 									<li class="now">${k}</li>
 								</c:if>
 								<c:if test="${ k != paging.nowPage}">
-									<li><a href="/bbs_list.do?cPage=${k}">${k}</a></li>
+									<li><a href="/board_list.do?cPage=${k}">${k}</a></li>
 								</c:if>   		
 							</c:forEach>
 							
@@ -151,7 +158,7 @@ table tfoot ol.paging li a:hover {
 									<li class="disable">다음으로</li>
 								</c:when>
 								<c:otherwise>
-									<li><a href="/bbs_list.do?cPage=${paging.beginBlock+paging.pagePerBlock }">다음으로</a></li>
+									<li><a href="/board_list.do?cPage=${paging.beginBlock+paging.pagePerBlock }">다음으로</a></li>
 								</c:otherwise>
 							</c:choose>
 						</ol>

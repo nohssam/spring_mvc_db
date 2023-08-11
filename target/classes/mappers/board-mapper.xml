@@ -8,11 +8,36 @@
 	</select>
 	
 	<select id="list" parameterType="Map" resultType="bv">
-		select * from board order by idx desc limit #{limit} offset #{offset}
+	   select * from board order by groups desc, lev asc   limit #{limit} offset #{offset}
 	</select>
 	
+	<!-- 원글 삽입 -->
+	<insert id="insert" parameterType="bv">
+		<selectKey keyProperty="groups" resultType="String" order="BEFORE">
+			SELECT (IFNULL(MAX(idx),0)+1) as groups FROM board
+		</selectKey>
+		insert into board(writer, title, content, pwd, hit, groups, step, lev, regdate, f_name)
+		VALUES(#{writer},#{title},#{content},#{pwd},0,#{groups},0,0,sysdate(),#{f_name})
+	</insert>
 	
+	<update id="hit" parameterType="String">
+		update board set hit = hit +1 where idx = #{idx}
+	</update>
+	<select id="onelist" parameterType="String" resultType="bv">
+		select * from board where idx = #{idx}
+	</select>
 	
+	<!-- levup -->
+	<!-- groups와 같은 원글을 찾아서 레벨이 같거나 크면 레벨 증가 -->
+	<update id="levupdate" parameterType="Map">
+		update board set lev = lev+1 where groups = #{groups} and lev >= #{lev}
+	</update>
+	
+	<!-- ansinsert -->
+	<insert id="ansinsert" parameterType="bv">
+	INSERT INTO board(writer, title, content, pwd, hit, groups, step, lev, regdate, f_name)
+	VALUES(#{writer},#{title},#{content},#{pwd},0,#{groups},#{step},#{lev},sysdate(),#{f_name})
+	</insert>
 </mapper>
 
 
