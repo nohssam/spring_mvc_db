@@ -30,6 +30,14 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="com.ict" />
+	<beans:bean id="log_inter" class="com.ict.common.LoginInterceptor" />
+	<interceptors>
+		<interceptor>
+			<mapping path="/bbs_list.do"/>
+			<mapping path="/board_insertForm.do"/>
+			<beans:ref bean="log_inter" />
+		</interceptor>
+	</interceptors>
 </beans:beans>
 
 
