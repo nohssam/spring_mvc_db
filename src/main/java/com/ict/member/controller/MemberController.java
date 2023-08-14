@@ -45,6 +45,10 @@ public class MemberController {
 		}else {
 			session.setAttribute("mvo", mvo);
 			session.setAttribute("loginChk", "ok");
+			// admin 성공시
+			if(mvo.getM_id().equals("admin")) {
+				session.setAttribute("admin", "ok");
+			}
 			return mv;
 		}
 	}
@@ -54,6 +58,7 @@ public class MemberController {
 		// session.invalidate();
 		session.removeAttribute("mvo");
 		session.removeAttribute("loginChk");
+		session.removeAttribute("admin");
 		return new ModelAndView("redirect:/");
 	}
 }

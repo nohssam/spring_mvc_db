@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="shop">
+	<select id="list" parameterType="String" resultType="svo">
+		select * from shop_t where category = #{category}
+	</select>
+	<select id="onelist" parameterType="String" resultType="svo">
+		select * from shop_t where idx = #{idx}
+	</select>
+	<select id="cartonelist" parameterType="Map" resultType="cartVO">
+		select * from cart where m_id=#{m_id} and p_num = #{p_num}
+	</select>
+	<insert id="cartinsert" parameterType="cartVO">
+		insert into cart(p_num, p_name,p_price,p_saleprice, p_su, m_id)
+		values(#{p_num},#{p_name},#{p_price},#{p_saleprice},1,#{m_id})
+	</insert>
+	<update id="cartupdate" parameterType="cartVO">
+		update cart set p_su = p_su + 1 where m_id = #{m_id} and p_num = #{p_num}
+	</update>
+	<select id="cartlist" parameterType="String" resultType="cartVO">
+		select * from cart where m_id = #{m_id}
+	</select>
+	<update id="cartedit" parameterType="cartVO">
+		update cart set p_su = #{p_su} where m_id = #{m_id} and p_num = #{p_num}
+	</update>
+	<delete id="cartdelete" parameterType="String">
+		delete from cart where idx = #{idx}
+	</delete>
+</mapper>
+
+
+
+
+
+
+
+
+

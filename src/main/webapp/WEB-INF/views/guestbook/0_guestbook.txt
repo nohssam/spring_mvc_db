@@ -1,0 +1,13 @@
+create table guestbook(
+    idx INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    NAME CHAR(60),
+    SUBJECT  CHAR(60),
+    content LONGTEXT,
+    email CHAR(60),
+    pwd CHAR(60), 
+    regdate TIMESTAMP
+);
+
+insert into guestbook(NAME, SUBJECT, content, email, pwd, regdate) 
+values('홍길동', '첫번째연습','첫번째연습 내용~~~','hong@nave.com','1111',SYSDATE());
+

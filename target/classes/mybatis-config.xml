@@ -17,6 +17,8 @@
 		<typeAlias type="com.ict.bbs.model.vo.BBS_VO" alias="bvo"/>
 		<typeAlias type="com.ict.bbs.model.vo.Comment_VO" alias="cvo"/>
 		<typeAlias type="com.ict.board.model.vo.Board_VO" alias="bv"/>
+		<typeAlias type="com.ict.shop.model.vo.ShopVO" alias="svo"/>
+		<typeAlias type="com.ict.shop.model.vo.CartVO" alias="cartVO"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mappers/members-mapper.xml" />
@@ -25,6 +27,7 @@
 		<mapper resource="mappers/member-mapper.xml" />
 		<mapper resource="mappers/bbs-mapper.xml" />
 		<mapper resource="mappers/board-mapper.xml" />
+		<mapper resource="mappers/shop-mapper.xml" />
 	</mappers>
 </configuration>
 

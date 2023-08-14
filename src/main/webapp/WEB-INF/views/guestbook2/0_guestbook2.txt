@@ -1,0 +1,10 @@
+create table guestbook2(
+    idx int not NULL PRIMARY KEY AUTO_INCREMENT,
+    name varchar(50),
+    subject varchar(50),
+    content longtext,
+    email varchar(50),
+    pwd CHAR(60), 
+    f_name varchar(50),
+    regdate TIMESTAMP
+  );
