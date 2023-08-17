@@ -120,7 +120,26 @@ public class TestAjaxController {
 		}
 		return null;
 	}
-	
+  
+	@RequestMapping(value = "/test06.do", produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public String JSON_Exam04() {
+		StringBuffer sb = new StringBuffer();
+		BufferedReader br = null;
+		try {
+			URL url = new URL("https://raw.githubusercontent.com/paullabkorea/coronaVaccinationStatus/main/data/data.json");
+			URLConnection conn = url.openConnection();
+			br = new BufferedReader(new InputStreamReader(conn.getInputStream(),"utf-8"));
+			String msg = "";
+			while((msg = br.readLine()) != null) {
+				sb.append(msg);
+			}
+			return sb.toString();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return null;
+	}
 }
 
 

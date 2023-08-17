@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
 <!DOCTYPE html>
 <html>
 <head>
@@ -189,6 +190,38 @@
 				}
 			});
 		});
+		$("#btn6").on("click", function() {
+			$("#result").empty();
+			$.ajax({
+				url : "/test06.do", // 서버 주소
+				method : "post",    // 전달 방식
+				dataType : "json",  // 가져오는 결과 타입
+				success: function(data) {
+					var table = "<table>";
+					table += "<thead><tr>";
+					table += "<td>시·도별</td><td>총인구 (명)</td><td>1차 접종 누계</td><td>1차 접종 퍼센트</td>"
+					+"<td>2차 접종 누계</td><td>2차 접종 퍼센트</td></tr></thead>";
+					table += "<tbody>";
+					// 천단위 콤마(내장함수)  : toLocaleString(),
+					//                      toLocaleString('ko-KR', {maximumFractionDigits:2})
+					$.each(data, function(k,v) {
+						table += "<tr>";
+						table += "<td>" + v["시·도별(1)"] +"</td>"
+						table += "<td>" + v["총인구 (명)"].toLocaleString() +"</td>"
+						table += "<td>" + v["1차 접종 누계"].toLocaleString() +"</td>"
+						table += "<td>" + v["1차 접종 퍼센트"].toLocaleString('ko-KR', {maximumFractionDigits:2}) +"% </td>"
+						table += "<td>" + v["2차 접종 누계"].toLocaleString() +"</td>"
+						table += "<td>" + v["2차 접종 퍼센트"].toLocaleString('ko-KR', {maximumFractionDigits:2}) +"% </td>"
+						table += "</tr>";
+					});
+					table +="</tbody></table>";
+					$("#result").append(table);
+				},
+				error:function(){
+					alert("읽기실패");
+				}
+			});
+		});
 	});
 </script>
 <script type="text/javascript">
@@ -197,6 +230,21 @@
 	}
 	function kma_go2() {
 		location.href = "/kma_go2.do";
+	}
+	function json_go() {
+		location.href = "/json_go.do";
+	}
+	function kakao_map01() {
+		location.href = "/kakaomap01.do";
+	}
+	function kakao_map02() {
+		location.href = "/kakaomap02.do";
+	}
+	function kakao_map03() {
+		location.href = "/kakaomap03.do";
+	}
+	function kakao_map04() {
+		location.href = "/kakaomap04.do";
 	}
 </script>
 </head>
@@ -208,6 +256,16 @@
 	<button onclick="go_board()">Board</button>
 	<button onclick="go_shop()">Shop</button>
 	<button onclick="go_email()">Email</button>
+	<hr>
+	<c:set var="REST_API_KEY" value="XXXXXXXXXXXXXXXXXX" />
+	<c:set var="REDIRECT_URI" value="XXXXXXXXXXXXXXXXXXX" />
+	<a href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}">
+	  <img src="/resources/images/kakao_login_medium.png">
+	</a>
+	<button onclick="kakao_map01()">카카오 지도 연습 01</button>
+	<button onclick="kakao_map02()">카카오 지도 연습 02</button>
+	<button onclick="kakao_map03()">카카오 지도 연습 03</button>
+	<button onclick="kakao_map04()">카카오 지도 연습 04</button>
 	<hr>
 	<div id="login" style="margin: 30px;">
 		<form action="/member_login.do" method="post">
@@ -235,6 +293,10 @@
 	<button id="btn5">날씨_XML_ajax</button>
 	<button onclick="kma_go()">날씨_XML_DOM</button>
 	<button onclick="kma_go2()">날씨_XML_SAX</button>
+	<button id="btn6">json_ajax</button>
+	<button onclick="json_go()">json</button>
+	
+	
 	<hr>
 	<div id="result"></div>
 </body>
