@@ -19,6 +19,7 @@
 		<typeAlias type="com.ict.board.model.vo.Board_VO" alias="bv"/>
 		<typeAlias type="com.ict.shop.model.vo.ShopVO" alias="svo"/>
 		<typeAlias type="com.ict.shop.model.vo.CartVO" alias="cartVO"/>
+		<typeAlias type="com.ict.transaction.TxVO" alias="tVO"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mappers/members-mapper.xml" />
@@ -28,6 +29,7 @@
 		<mapper resource="mappers/bbs-mapper.xml" />
 		<mapper resource="mappers/board-mapper.xml" />
 		<mapper resource="mappers/shop-mapper.xml" />
+		<mapper resource="mappers/card-mapper.xml" />
 	</mappers>
 </configuration>
 

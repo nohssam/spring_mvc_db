@@ -246,6 +246,12 @@
 	function kakao_map04() {
 		location.href = "/kakaomap04.do";
 	}
+	function kakao_addr() {
+		location.href = "/kakaoaddr.do";
+	}
+	function transaction_go() {
+		location.href = "/transaction.do";
+	}
 </script>
 </head>
 <body>
@@ -257,15 +263,21 @@
 	<button onclick="go_shop()">Shop</button>
 	<button onclick="go_email()">Email</button>
 	<hr>
-	<c:set var="REST_API_KEY" value="XXXXXXXXXXXXXXXXXX" />
-	<c:set var="REDIRECT_URI" value="XXXXXXXXXXXXXXXXXXX" />
+	
+	<c:set var="REST_API_KEY" value="XXXXXXXXXX" />
+	<c:set var="REDIRECT_URI" value="XXXXXXXXXX" />
 	<a href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}">
 	  <img src="/resources/images/kakao_login_medium.png">
 	</a>
+	<hr>
+	
+	
 	<button onclick="kakao_map01()">카카오 지도 연습 01</button>
 	<button onclick="kakao_map02()">카카오 지도 연습 02</button>
 	<button onclick="kakao_map03()">카카오 지도 연습 03</button>
 	<button onclick="kakao_map04()">카카오 지도 연습 04</button>
+	<button onclick="kakao_addr()">다음 주소 API</button>
+	<button onclick="transaction_go()">트랜잭션</button>
 	<hr>
 	<div id="login" style="margin: 30px;">
 		<form action="/member_login.do" method="post">

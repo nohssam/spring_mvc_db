@@ -39,8 +39,8 @@ public class Kakao_Controller {
 			BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
 			StringBuffer sb = new StringBuffer();
 			sb.append("grant_type=authorization_code");
-			sb.append("&client_id=XXXXXXXXXXXXXXXXXXXXXXXXX");
-			sb.append("&redirect_uri=XXXXXXXXXXXXXXXXXXXXXXXXXX");
+			sb.append("&client_id=eaa1e1a316051dee281d61d034963dbc");
+			sb.append("&redirect_uri=http://localhost:8090/login.do");
 			sb.append("&code="+code);
 			bw.write(sb.toString());
 			bw.flush();
@@ -142,6 +142,25 @@ public class Kakao_Controller {
 	@RequestMapping("/kakaomap04.do")
 	public ModelAndView KakaoMap04() {
 		return new ModelAndView("kakao_map04");
+	}
+	@RequestMapping("/kakaoaddr.do")
+	public ModelAndView KakaoAddr() {
+		return new ModelAndView("kakao_addr");
+	}
+	@RequestMapping("/kakao_addr_ok.do")
+	public ModelAndView KakaoAddrOk(AddrVO addrVO) {
+		ModelAndView mv = new ModelAndView("redirect:/");
+		System.out.println(addrVO.getPostcode());
+		System.out.println(addrVO.getAddress());
+		if(addrVO.getDetailAddress() == null) {
+			System.out.println("상세 없음");
+		}else {
+			System.out.println(addrVO.getDetailAddress());
+		}
+		System.out.println(addrVO.getExtraAddress());
+		// DB 처리 , 기타 등 
+		
+		return mv; 
 	}
 	
 }
